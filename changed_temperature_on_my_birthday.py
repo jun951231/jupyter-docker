@@ -1,37 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[68]:
-
-
-import csv
-import matplotlib.pyplot as plt
-
-
-# In[69]:
-
-
-data = csv.reader(open('data/seoul.csv', 'rt', encoding='UTF-8'))
-
-
-# In[70]:
-
-
-next(data)
-
-
-# In[71]:
-
-
-ls = list(data)
-
-
-# In[81]:
-
-
-# print([i for i in ls])
-
-
 # In[73]:
 
 
@@ -51,13 +20,45 @@ data : [] =list()
 '''
 
 
-# In[82]:
+# In[96]:
 
 
-# print([i[-1] for i in ls]) # show_highest_temperature
+import csv
+import matplotlib.pyplot as plt
+import random
 
 
-# In[75]:
+# In[97]:
+
+
+data = csv.reader(open('data/seoul.csv', 'rt', encoding='UTF-8'))
+
+
+# In[98]:
+
+
+next(data)
+
+
+# In[99]:
+
+
+ls = list(data)
+
+
+# In[100]:
+
+
+print([i for i in ls])
+
+
+# In[101]:
+
+
+print([i[-1] for i in ls]) # show_highest_temperature
+
+
+# In[102]:
 
 
 highest_temperature = []
@@ -65,21 +66,21 @@ highest_temperature = []
 print(f'총 {len(highest_temperature)}개')
 
 
-# In[76]:
+# In[103]:
 
 
 plt.figure(figsize=(20, 2))
 plt.plot(highest_temperature, 'r')
 
 
-# In[77]:
+# In[104]:
 
 
 high = [] # 최고기온
 low = [] # 최저기온
 
 
-# In[78]:
+# In[105]:
 
 
 for i in ls:
@@ -90,7 +91,7 @@ for i in ls:
                 low.append(float(i[-2]))
 
 
-# In[80]:
+# In[106]:
 
 
 plt.rc('font')
@@ -99,4 +100,43 @@ plt.title('내 생일의 기온 변화 그래프')
 plt.plot(high, 'hotpink', label='high')
 plt.plot(low, 'skyblue', label='low')
 plt.legend()
+
+
+# In[107]:
+
+
+arr = []
+[arr.append(random.randint(1, 1000))for i in range(13)]
+plt.boxplot(arr)
+plt.show()
+
+
+# In[110]:
+
+
+month = [[], [], [], [], [], [], [], [], [], [], [], []]
+[month[int(i[0].split('-')[1]) - 1].append(float(i[-1])) for i in ls if i[-1] != '']
+plt.boxplot(month)
+plt.show()
+
+
+# In[113]:
+
+
+day = []
+[day.append([]) for i in range(31)]
+[day[int(i[0].split('-')[2]) -1].append(float(i[-1]))
+     for i in ls
+        if i[-1] != ''
+            if i[0].split('-')[1] == '08']
+plt.style.use('ggplot') # Graph Style
+plt.figure(figsize=(10, 5), dpi=300) # Graph Size
+plt.boxplot(day, showfliers=False) # Omit Outlier
+plt.show()
+
+
+# In[ ]:
+
+
+
 
