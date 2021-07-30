@@ -46,16 +46,16 @@ next(data)
 ls = list(data)
 
 
-# In[100]:
+# In[114]:
 
 
-print([i for i in ls])
+#print([i for i in ls])
 
 
-# In[101]:
+# In[115]:
 
 
-print([i[-1] for i in ls]) # show_highest_temperature
+#print([i[-1] for i in ls]) # show_highest_temperature
 
 
 # In[102]:
